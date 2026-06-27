@@ -17,13 +17,28 @@ int main(int argc, char *argv[]) {
     BeginDrawing();
     ClearBackground(BLACK);
 
-    int count = 4;
-    Vector2 a, b, c, d;
-    a = (Vector2){50, 50};
-    b = (Vector2){100, 100};
-    c = (Vector2){80, 20};
-    d = (Vector2){200, 30};
-    Vector2 points[] = {a, b, c, d};
+    int count = 6;
+
+    Vector2 center = {WIDTH / 2, HEIGHT / 2};
+
+    float segment_width = 200;
+    float segment_thickness = 50;
+
+    Vector2 a, b, c, d, e, f;
+    a = (Vector2){center.x - segment_width / 2 - segment_thickness / 2,
+                  center.y};
+    b = (Vector2){center.x - segment_width / 2,
+                  center.y - segment_thickness / 2};
+    c = (Vector2){center.x - segment_width / 2,
+                  center.y + segment_thickness / 2};
+    d = (Vector2){center.x + segment_width / 2,
+                  center.y - segment_thickness / 2};
+    e = (Vector2){center.x + segment_width / 2,
+                  center.y + segment_thickness / 2};
+    f = (Vector2){center.x + segment_width / 2 + segment_thickness / 2,
+                  center.y};
+
+    Vector2 points[] = {a, b, c, d, e, f};
     DrawTriangleStrip(points, count, SKYBLUE);
 
     EndDrawing();
