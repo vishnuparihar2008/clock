@@ -10,9 +10,9 @@
 
 #define OFFSET 30
 
-#define COLOR_BG       (Color){ 10, 16, 10, 255 }
-#define COLOR_ACTIVE   (Color){ 0, 255, 65, 255 }
-#define COLOR_INACTIVE (Color){ 0, 45, 15, 255 }
+#define COLOR_BG       /*(Color){ 10, 16, 10, 255 }*//*(Color){ 22, 14, 8, 255 }*/(Color){ 24, 12, 36, 255 }/*(Color){ 20, 20, 23, 255 }*/
+#define COLOR_ACTIVE   /*(Color){ 0, 255, 65, 255 }*//*(Color){ 255, 140, 0, 255 }*/(Color){ 255, 0, 127, 255 }/*(Color){ 240, 240, 245, 255 }*/
+#define COLOR_INACTIVE /*(Color){ 0, 45, 15, 255 }*//*(Color){ 60, 30, 5, 255 }*/(Color){ 65, 25, 75, 255 }/*(Color){ 50, 50, 55, 255 }*/
 
 char *slice(const char *str, size_t start, size_t end) {
   char *result;
