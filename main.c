@@ -1,4 +1,5 @@
 #include <raylib.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <time.h>
 
@@ -8,18 +9,40 @@
 float segment_width = 200;
 float segment_thickness = 50;
 
-void drawStrip(Vector2 center) {
+void drawStrip(Vector2 center, bool horizontal) {
   int count = 6;
 
   Vector2 a, b, c, d, e, f;
-  a = (Vector2){center.x - segment_width / 2 - segment_thickness / 2, center.y};
-  b = (Vector2){center.x - segment_width / 2, center.y - segment_thickness / 2};
-  c = (Vector2){center.x - segment_width / 2, center.y + segment_thickness / 2};
-  d = (Vector2){center.x + segment_width / 2, center.y - segment_thickness / 2};
-  e = (Vector2){center.x + segment_width / 2, center.y + segment_thickness / 2};
-  f = (Vector2){center.x + segment_width / 2 + segment_thickness / 2, center.y};
 
-  Vector2 points[] = {a, c, b, e, d, f};
+  if (horizontal) {
+    a = (Vector2){center.x - segment_width / 2 - segment_thickness / 2,
+                  center.y};
+    b = (Vector2){center.x - segment_width / 2,
+                  center.y + segment_thickness / 2};
+    c = (Vector2){center.x - segment_width / 2,
+                  center.y - segment_thickness / 2};
+    d = (Vector2){center.x + segment_width / 2,
+                  center.y + segment_thickness / 2};
+    e = (Vector2){center.x + segment_width / 2,
+                  center.y - segment_thickness / 2};
+    f = (Vector2){center.x + segment_width / 2 + segment_thickness / 2,
+                  center.y};
+  } else {
+    a = (Vector2){center.x,
+                  center.y - segment_width / 2 - segment_thickness / 2};
+    b = (Vector2){center.x - segment_thickness / 2,
+                  center.y - segment_width / 2};
+    c = (Vector2){center.x + segment_thickness / 2,
+                  center.y - segment_width / 2};
+    d = (Vector2){center.x - segment_thickness / 2,
+                  center.y + segment_width / 2};
+    e = (Vector2){center.x + segment_thickness / 2,
+                  center.y + segment_width / 2};
+    f = (Vector2){center.x,
+                  center.y + segment_width / 2 + segment_thickness / 2};
+  }
+  Vector2 points[] = {a, b, c, d, e, f};
+
   DrawTriangleStrip(points, count, DARKGRAY);
 }
 
@@ -36,7 +59,8 @@ int main(int argc, char *argv[]) {
     ClearBackground(BLACK);
 
     Vector2 center = {300, 200};
-    drawStrip(center);
+    drawStrip(center, true);
+    drawStrip(center, false);
 
     EndDrawing();
   }
