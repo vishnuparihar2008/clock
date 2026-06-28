@@ -67,23 +67,23 @@ void drawDigit(Vector2 center, int digit) {
   int *digit_segment = &digits[digit][0];
 
   drawStrip((Vector2){center.x, center.y - segment_width - OFFSET}, true,
-            digit_segment[0] ? WHITE : GRAY);
+            digit_segment[0] ? RED : BLACK);
   drawStrip((Vector2){center.x - segment_width / 2 - OFFSET / 2,
                       center.y - segment_width / 2 - OFFSET / 2},
-            false, digit_segment[1] ? WHITE : GRAY);
+            false, digit_segment[1] ? RED : BLACK);
   drawStrip((Vector2){center.x + segment_width / 2 + OFFSET / 2,
                       center.y - segment_width / 2 - OFFSET / 2},
-            false, digit_segment[2] ? WHITE : GRAY);
+            false, digit_segment[2] ? RED : BLACK);
   drawStrip((Vector2){center.x, center.y}, true,
-            digit_segment[3] ? WHITE : GRAY);
+            digit_segment[3] ? RED : BLACK);
   drawStrip((Vector2){center.x - segment_width / 2 - OFFSET / 2,
                       center.y + segment_width / 2 + OFFSET / 2},
-            false, digit_segment[4] ? WHITE : GRAY);
+            false, digit_segment[4] ? RED : BLACK);
   drawStrip((Vector2){center.x + segment_width / 2 + OFFSET / 2,
                       center.y + segment_width / 2 + OFFSET / 2},
-            false, digit_segment[5] ? WHITE : GRAY);
+            false, digit_segment[5] ? RED : BLACK);
   drawStrip((Vector2){center.x, center.y + segment_width + OFFSET}, true,
-            digit_segment[6] ? WHITE : GRAY);
+            digit_segment[6] ? RED : BLACK);
 }
 
 int main(int argc, char *argv[]) {
@@ -104,16 +104,16 @@ int main(int argc, char *argv[]) {
     int second2 = sec % 10;
     
     BeginDrawing();
-    ClearBackground(DARKGRAY);
+    ClearBackground(BLACK);
 
     drawDigit((Vector2){90, HEIGHT / 2}, hour1);
     drawDigit((Vector2){200, HEIGHT / 2}, hour2);
-    DrawCircle(295, HEIGHT / 2 - 50, 12, WHITE);
-    DrawCircle(295, HEIGHT / 2 + 50, 12, WHITE);
+    DrawCircle(295, HEIGHT / 2 - 50, 12, RED);
+    DrawCircle(295, HEIGHT / 2 + 50, 12, RED);
     drawDigit((Vector2){390, HEIGHT / 2}, minute1);
     drawDigit((Vector2){500, HEIGHT / 2}, minute2);
-    DrawCircle(595, HEIGHT / 2 - 50, 12, WHITE);
-    DrawCircle(595, HEIGHT / 2 + 50, 12, WHITE);
+    DrawCircle(595, HEIGHT / 2 - 50, 12, RED);
+    DrawCircle(595, HEIGHT / 2 + 50, 12, RED);
     drawDigit((Vector2){690, HEIGHT / 2}, second1);
     drawDigit((Vector2){800, HEIGHT / 2}, second2);
 
