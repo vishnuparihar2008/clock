@@ -9,7 +9,13 @@
 float segment_width = 200;
 float segment_thickness = 50;
 
-void drawStrip(Vector2 center, bool horizontal) {
+int digits[10][7] = {{1, 1, 1, 0, 1, 1, 1}, {0, 0, 1, 0, 0, 1, 0},
+                     {1, 0, 1, 1, 1, 0, 1}, {1, 0, 1, 1, 0, 1, 1},
+                     {0, 1, 1, 1, 0, 1, 0}, {1, 1, 0, 1, 0, 1, 1},
+                     {1, 1, 0, 1, 1, 1, 1}, {1, 0, 1, 0, 0, 1, 0},
+                     {1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 0, 1, 1}};
+
+void drawStrip(Vector2 center, bool horizontal, Color color) {
   int count = 6;
 
   Vector2 a, b, c, d, e, f;
@@ -43,7 +49,31 @@ void drawStrip(Vector2 center, bool horizontal) {
   }
   Vector2 points[] = {a, b, c, d, e, f};
 
-  DrawTriangleStrip(points, count, DARKGRAY);
+  DrawTriangleStrip(points, count, color);
+}
+
+void drawDigit(Vector2 center, int digit) {
+  // Find the Digit to Draw
+  int *digit_segment = &digits[digit][0];
+
+  drawStrip((Vector2){center.x, center.y - segment_width}, true,
+            digit_segment[0] ? RED : DARKGRAY);
+  drawStrip(
+      (Vector2){center.x - segment_width / 2, center.y - segment_width / 2},
+      false, digit_segment[1] ? RED : DARKGRAY);
+  drawStrip(
+      (Vector2){center.x + segment_width / 2, center.y - segment_width / 2},
+      false, digit_segment[2] ? RED : DARKGRAY);
+  drawStrip((Vector2){center.x, center.y}, true,
+            digit_segment[3] ? RED : DARKGRAY);
+  drawStrip(
+      (Vector2){center.x - segment_width / 2, center.y + segment_width / 2},
+      false, digit_segment[4] ? RED : DARKGRAY);
+  drawStrip(
+      (Vector2){center.x + segment_width / 2, center.y + segment_width / 2},
+      false, digit_segment[5] ? RED : WHITE);
+  drawStrip((Vector2){center.x, center.y + segment_width}, true,
+            digit_segment[6] ? RED : DARKGRAY);
 }
 
 int main(int argc, char *argv[]) {
@@ -58,9 +88,7 @@ int main(int argc, char *argv[]) {
     BeginDrawing();
     ClearBackground(BLACK);
 
-    Vector2 center = {300, 200};
-    drawStrip(center, true);
-    drawStrip(center, false);
+    drawDigit((Vector2){WIDTH / 2, HEIGHT / 2}, 0);
 
     EndDrawing();
   }
