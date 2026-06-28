@@ -10,6 +10,10 @@
 
 #define OFFSET 30
 
+#define COLOR_BG       (Color){ 10, 16, 10, 255 }
+#define COLOR_ACTIVE   (Color){ 0, 255, 65, 255 }
+#define COLOR_INACTIVE (Color){ 0, 45, 15, 255 }
+
 char *slice(const char *str, size_t start, size_t end) {
   char *result;
   strncpy(result, str + start, end - start);
@@ -67,23 +71,23 @@ void drawDigit(Vector2 center, int digit) {
   int *digit_segment = &digits[digit][0];
 
   drawStrip((Vector2){center.x, center.y - segment_width - OFFSET}, true,
-            digit_segment[0] ? RED : BLACK);
+            digit_segment[0] ? COLOR_ACTIVE : COLOR_INACTIVE);
   drawStrip((Vector2){center.x - segment_width / 2 - OFFSET / 2,
                       center.y - segment_width / 2 - OFFSET / 2},
-            false, digit_segment[1] ? RED : BLACK);
+            false, digit_segment[1] ? COLOR_ACTIVE : COLOR_INACTIVE);
   drawStrip((Vector2){center.x + segment_width / 2 + OFFSET / 2,
                       center.y - segment_width / 2 - OFFSET / 2},
-            false, digit_segment[2] ? RED : BLACK);
+            false, digit_segment[2] ? COLOR_ACTIVE : COLOR_INACTIVE);
   drawStrip((Vector2){center.x, center.y}, true,
-            digit_segment[3] ? RED : BLACK);
+            digit_segment[3] ? COLOR_ACTIVE : COLOR_INACTIVE);
   drawStrip((Vector2){center.x - segment_width / 2 - OFFSET / 2,
                       center.y + segment_width / 2 + OFFSET / 2},
-            false, digit_segment[4] ? RED : BLACK);
+            false, digit_segment[4] ? COLOR_ACTIVE : COLOR_INACTIVE);
   drawStrip((Vector2){center.x + segment_width / 2 + OFFSET / 2,
                       center.y + segment_width / 2 + OFFSET / 2},
-            false, digit_segment[5] ? RED : BLACK);
+            false, digit_segment[5] ? COLOR_ACTIVE : COLOR_INACTIVE);
   drawStrip((Vector2){center.x, center.y + segment_width + OFFSET}, true,
-            digit_segment[6] ? RED : BLACK);
+            digit_segment[6] ? COLOR_ACTIVE : COLOR_INACTIVE);
 }
 
 int main(int argc, char *argv[]) {
@@ -104,16 +108,16 @@ int main(int argc, char *argv[]) {
     int second2 = sec % 10;
     
     BeginDrawing();
-    ClearBackground(BLACK);
+    ClearBackground(COLOR_BG);
 
     drawDigit((Vector2){90, HEIGHT / 2}, hour1);
     drawDigit((Vector2){200, HEIGHT / 2}, hour2);
-    DrawCircle(295, HEIGHT / 2 - 50, 12, RED);
-    DrawCircle(295, HEIGHT / 2 + 50, 12, RED);
+    DrawCircle(295, HEIGHT / 2 - 50, 12, COLOR_ACTIVE);
+    DrawCircle(295, HEIGHT / 2 + 50, 12, COLOR_ACTIVE);
     drawDigit((Vector2){390, HEIGHT / 2}, minute1);
     drawDigit((Vector2){500, HEIGHT / 2}, minute2);
-    DrawCircle(595, HEIGHT / 2 - 50, 12, RED);
-    DrawCircle(595, HEIGHT / 2 + 50, 12, RED);
+    DrawCircle(595, HEIGHT / 2 - 50, 12, COLOR_ACTIVE);
+    DrawCircle(595, HEIGHT / 2 + 50, 12, COLOR_ACTIVE);
     drawDigit((Vector2){690, HEIGHT / 2}, second1);
     drawDigit((Vector2){800, HEIGHT / 2}, second2);
 
