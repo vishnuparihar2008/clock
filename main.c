@@ -6,6 +6,8 @@
 #define WIDTH 900
 #define HEIGHT 600
 
+#define OFFSET 70
+
 float segment_width = 200;
 float segment_thickness = 50;
 
@@ -56,24 +58,20 @@ void drawDigit(Vector2 center, int digit) {
   // Find the Digit to Draw
   int *digit_segment = &digits[digit][0];
 
-  drawStrip((Vector2){center.x, center.y - segment_width}, true,
-            digit_segment[0] ? RED : DARKGRAY);
-  drawStrip(
-      (Vector2){center.x - segment_width / 2, center.y - segment_width / 2},
-      false, digit_segment[1] ? RED : DARKGRAY);
-  drawStrip(
-      (Vector2){center.x + segment_width / 2, center.y - segment_width / 2},
-      false, digit_segment[2] ? RED : DARKGRAY);
-  drawStrip((Vector2){center.x, center.y}, true,
-            digit_segment[3] ? RED : DARKGRAY);
-  drawStrip(
-      (Vector2){center.x - segment_width / 2, center.y + segment_width / 2},
-      false, digit_segment[4] ? RED : DARKGRAY);
-  drawStrip(
-      (Vector2){center.x + segment_width / 2, center.y + segment_width / 2},
-      false, digit_segment[5] ? RED : WHITE);
-  drawStrip((Vector2){center.x, center.y + segment_width}, true,
-            digit_segment[6] ? RED : DARKGRAY);
+  drawStrip((Vector2){center.x, center.y - segment_width - OFFSET},
+  true, digit_segment[0] ? RED : DARKGRAY);
+  drawStrip((Vector2){center.x - segment_width / 2 - OFFSET/2, center.y - segment_width / 2 - OFFSET / 2},
+  false, digit_segment[1] ? RED : DARKGRAY);
+  drawStrip((Vector2){center.x + segment_width / 2 + OFFSET/2, center.y - segment_width / 2 - OFFSET / 2},
+  false, digit_segment[2] ? RED : DARKGRAY);
+  drawStrip((Vector2){center.x, center.y},
+  true, digit_segment[3] ? RED : DARKGRAY);
+  drawStrip((Vector2){center.x - segment_width / 2 - OFFSET/2, center.y + segment_width / 2 + OFFSET/2},
+  false, digit_segment[4] ? RED : DARKGRAY);
+  drawStrip((Vector2){center.x + segment_width / 2 + OFFSET/2, center.y + segment_width / 2 + OFFSET/2},
+  false, digit_segment[5] ? RED : WHITE);
+  drawStrip((Vector2){center.x, center.y + segment_width + OFFSET},
+  true, digit_segment[6] ? RED : DARKGRAY);
 }
 
 int main(int argc, char *argv[]) {
